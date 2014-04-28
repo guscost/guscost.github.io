@@ -73,7 +73,7 @@ var sf = (function(){
   var startGame = function() {
     $('#menu').hide();
     $('#canvas').show();
-    $('.musicPlayer')[0].play();
+    $('audio')[0].play();
     setSize();
     game.setup();
     game.run();
@@ -1324,8 +1324,8 @@ var sf = (function(){
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
-      c.fillStyle='#FFFF66';
-      c.font="48px Georgia";
+      c.fillStyle='#FFFF22';
+      c.font="72px Georgia";
       c.fillText(game.announcement, -100, 0);
       game.announcementTimer--;
     }
