@@ -1228,10 +1228,11 @@ var sf = (function(){
     c.translate(game.planet.x, game.planet.y);
 
     // Draw HUD
+    c.textAlign = 'center';
     c.fillStyle='white';
-    c.font="20px Georgia";
-    c.fillText("Resources: " + game.rover.resources, -180, -game.planet.y+25);
-    c.fillText("Enemy: " + game.totalEnemyResources, 60, -game.planet.y+25);
+    c.font='20px Georgia';
+    c.fillText('Resources: ' + game.rover.resources, -110, -game.planet.y+25);
+    c.fillText('Enemy: ' + game.totalEnemyResources, 100, -game.planet.y+25);
     c.beginPath();
     c.arc(0, -game.planet.y, 25, 0, 2*Math.PI, false);
     c.fillStyle = game.shockCooldown === 0 ? 'green' : 'red';
@@ -1320,14 +1321,12 @@ var sf = (function(){
     }
     else if (game.lost) {
       c.fillStyle = '#FF5555';
-      c.textAlign = 'center';
       c.font = '72px Georgia';
       c.fillText('You Lose!', 0, 0);
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
       c.fillStyle = '#FFFF11';
-      c.textAlign = 'center';
       c.font = '66px Georgia';
       c.fillText(game.announcement, 0, 0);
       game.announcementTimer--;
