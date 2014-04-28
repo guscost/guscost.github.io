@@ -1311,23 +1311,25 @@ var sf = (function(){
 
     // Draw announcements
     if (game.won) {
-      var winMessage = game.currentLevel === 4 ? "A winner is you." : "You win!";
-      var winX = game.currentLevel === 4 ? -200 : -150
-      c.fillStyle='#66FF66';
-      c.font="72px Georgia";
-      c.fillText(winMessage, winX, 0);
+      var winMessage = game.currentLevel === 4 ? 'A winner is you.' : 'You win!';
+      var winFont = game.currentLevel === 4 ? '60px Georgia' : '72px Georgia';
+      c.fillStyle = '#66FF66';
+      c.font = winFont;
+      c.fillText(winMessage, 0, 0);
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
-      c.fillStyle='#FF5555';
-      c.font="72px Georgia";
-      c.fillText("You Lose!", -150, 0);
+      c.fillStyle = '#FF5555';
+      c.textAlign = 'center';
+      c.font = '72px Georgia';
+      c.fillText('You Lose!', 0, 0);
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
-      c.fillStyle='#FFFF11';
-      c.font="72px Georgia";
-      c.fillText(game.announcement, -180, 0);
+      c.fillStyle = '#FFFF11';
+      c.textAlign = 'center';
+      c.font = '66px Georgia';
+      c.fillText(game.announcement, 0, 0);
       game.announcementTimer--;
     }
 
