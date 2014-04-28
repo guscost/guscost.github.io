@@ -520,8 +520,8 @@ var sf = (function(){
         resources: 0
       });
       game.obstacles.push({
-        x: -120,
-        y: 30,
+        x: -100,
+        y: 40,
         r: 20,
         hit: false,
         breakable: false,
@@ -706,12 +706,12 @@ var sf = (function(){
     else if (game.currentLevel === 4) {
       // Setup NPCs
       game.hippies.push({
-        a:1.5*Math.PI,
+        a:1.2*Math.PI,
         randomTimer:0,
         dead: false
       });
       game.hippies.push({
-        a:1.2*Math.PI,
+        a:0.9*Math.PI,
         randomTimer:0,
         dead: false
       });
@@ -720,8 +720,8 @@ var sf = (function(){
       game.enemies.push({
         x:0, 
         y:0, 
-        a:Math.PI, 
-        c:Math.PI*60, 
+        a:1.3*Math.PI, 
+        c:1.3*Math.PI*60, 
         probeDepth:0, 
         probeX:0,
         probeY:0,
@@ -737,8 +737,8 @@ var sf = (function(){
       game.enemies.push({
         x:0, 
         y:0, 
-        a:0.5*Math.PI, 
-        c:0.5*Math.PI*60, 
+        a:0.6*Math.PI, 
+        c:0.6*Math.PI*60, 
         probeDepth:0, 
         probeX:0,
         probeY:0,
@@ -753,17 +753,17 @@ var sf = (function(){
 
       // Setup game.obstacles
       game.obstacles.push({
-        x: 45,
-        y: 53,
-        r: 25,
+        x: -20,
+        y: 0,
+        r: 20,
         hit: false,
-        breakable: true,
+        breakable: false,
         broken: 0,
-        resources: 100
+        resources: 0
       });
       game.obstacles.push({
         x: 10,
-        y: 0,
+        y: 130,
         r: 20,
         hit: false,
         breakable: false,
@@ -816,7 +816,7 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: 47,
+        x: 72,
         y: -65,
         r: 25,
         hit: false,
@@ -825,8 +825,8 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: 40,
-        y: 50,
+        x: 35,
+        y: 65,
         r: 25,
         hit: false,
         breakable: true,
@@ -834,7 +834,7 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: 99,
+        x: -150,
         y: 33,
         r: 25,
         hit: false,
@@ -870,8 +870,8 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: 130,
-        y: -20,
+        x: 100,
+        y: -10,
         r: 20,
         hit: false,
         breakable: false,
@@ -976,8 +976,7 @@ var sf = (function(){
         // Steal the resources!
         if (foundResource) {
           // Drill if close enough
-          var angleDifference = Math.abs(nearestAngle-enemy.a)%(2*Math.PI);
-          if (angleDifference < 0.13) {
+          if (Math.abs(nearestAngle-enemy.a)%(2*Math.PI) < 0.1) {
             // Enemy probe control
             enemy.collided = false;
             enemy.probeX = (game.planet.r - enemy.probeDepth) * Math.cos(enemy.a);
@@ -1008,8 +1007,9 @@ var sf = (function(){
           }
           else { 
             // Move enemy to next resource
-            if (Math.abs(nearestAngle-enemy.a)>Math.PI) { enemy.c++; }
-            else { enemy.c--; }
+            var angleDifference = nearestAngle%(2*Math.PI) - enemy.a%(2*Math.PI);
+            if (angleDifference > Math.PI || angleDifference < 0) { enemy.c--; }
+            else { enemy.c++; }
 
             // Stop sound if drilling interrupted
             if (enemy.drilling) { stopSound('drill' + index); enemy.drilling = false; }
