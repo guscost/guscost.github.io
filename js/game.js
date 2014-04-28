@@ -648,8 +648,8 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: 60,
-        y: 83,
+        x: 54,
+        y: 100,
         r: 20,
         hit: false,
         breakable: true,
@@ -1007,9 +1007,11 @@ var sf = (function(){
           }
           else { 
             // Move enemy to next resource
-            var angleDifference = nearestAngle%(Math.PI) - enemy.a%(Math.PI);
-            if (angleDifference > (0.5*Math.PI) || angleDifference < 0) { enemy.c--; }
-            else { enemy.c++; }
+            var angleDifference = nearestAngle < enemy.a ? (2*Math.PI - enemy.a + nearestAngle) : (nearestAngle - enemy.a); 
+            enemy.c += angleDifference < Math.PI ? 1 : -1;
+            //if (nearestAngle > 2*Math.PI) { console.log(nearestAngle); }
+            //if ((nearestAngle - enemy.a%(2*Math.PI) + 2*Math.PI) % 2*Math.PI < Math.PI) { enemy.c++; }
+            //else { enemy.c--; }
 
             // Stop sound if drilling interrupted
             if (enemy.drilling) { stopSound('drill' + index); enemy.drilling = false; }
