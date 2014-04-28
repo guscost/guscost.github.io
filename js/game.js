@@ -1241,10 +1241,6 @@ var sf = (function(){
     c.stroke();
 
     // Draw game.planet
-    c.beginPath();
-    c.arc(0,0, game.planet.r+32, 0, 2*Math.PI, false);
-    c.fillStyle = 'black';
-    c.fill();
     c.drawImage(moonImg, -game.planet.r-25, -game.planet.r-25, game.planet.d+50, game.planet.d+50);    
 
     // Draw obstacles
