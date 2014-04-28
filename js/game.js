@@ -16,6 +16,7 @@ var sf = (function(){
   var deadRoverImg = new Image();
   var deadEnemyRoverImg = new Image();
   var deadHippyImg = new Image();
+  var backgroundImg = new Image();
 
   // Game object
   var game = {};
@@ -70,8 +71,10 @@ var sf = (function(){
     game.loadTimer = 360;
   };
   var startGame = function() {
+    $('#menu').hide();
     $('#canvas').show();
     $('.musicPlayer')[0].play();
+    setSize();
     game.setup();
     game.run();
   };
@@ -229,6 +232,7 @@ var sf = (function(){
   deadRoverImg.src = '/img/deadRover.png';
   deadEnemyRoverImg.src = '/img/deadEnemyRover.png';
   deadHippyImg.src = '/img/deadHippy.png';
+  backgroundImg.src = '/img/background.jpg';
 
   staticBoulderImg.src = 'img/boulder0.png';
   emptyBoulderImg[0].src = 'img/boulder1.png';
@@ -1216,8 +1220,12 @@ var sf = (function(){
 
     // Clear screen
     var gameWidthHalf = game.width/2, gameHeightHalf = game.height/2;
-    c.fillStyle='black';
-    c.fillRect(-gameWidthHalf, -gameHeightHalf, game.width, game.height);
+    var backgroundPattern = c.createPattern(backgroundImg, 'repeat');
+    c.fillStyle = backgroundPattern;
+    c.fillRect(0, 0, game.width, game.height);
+
+    // Translate to planet center
+    c.translate(game.planet.x, game.planet.y);
 
     // Draw HUD
     c.fillStyle='white';
@@ -1325,6 +1333,9 @@ var sf = (function(){
       c.fillText(game.announcement, -100, 0);
       game.announcementTimer--;
     }
+
+    // Translate back
+    c.translate(-game.planet.x, -game.planet.y);
   };
 
   // Key handlers
@@ -1369,11 +1380,9 @@ var sf = (function(){
     return game.height = canvas.height;
   };
   window.onresize = function(e) { setSize(); };
-  setSize();
 
   // Setup game
   game.setup();
-  c.translate(game.planet.x, game.planet.y);
 
   return {
     game: game
