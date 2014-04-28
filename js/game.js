@@ -1311,10 +1311,11 @@ var sf = (function(){
 
     // Draw announcements
     if (game.won) {
-      var winMessage = game.currentLevel === 4 ? "A winner is you." : "You win!"
+      var winMessage = game.currentLevel === 4 ? "A winner is you." : "You win!";
+      var winX = game.currentLevel === 4 ? -200 : -150
       c.fillStyle='#66FF66';
       c.font="72px Georgia";
-      c.fillText(winMessage, -150, 0);
+      c.fillText(winMessage, winX, 0);
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
@@ -1326,7 +1327,7 @@ var sf = (function(){
     else if (game.announcement != '' && game.announcementTimer > 0) {
       c.fillStyle='#FFFF11';
       c.font="72px Georgia";
-      c.fillText(game.announcement, -170, 0);
+      c.fillText(game.announcement, -180, 0);
       game.announcementTimer--;
     }
 
