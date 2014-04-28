@@ -329,8 +329,7 @@ var sf = (function(){
       // Setup game.enemies
       game.enemies.push({
         x:0, 
-        y:0, 
-        lastDirection:0,
+        y:0,
         a:Math.PI, 
         c:Math.PI*60, 
         probeDepth:0, 
@@ -376,10 +375,348 @@ var sf = (function(){
       // Setup game.enemies
       game.enemies.push({
         x:0, 
-        y:0, 
-        lastDirection:0,
+        y:0,
         a:Math.PI, 
         c:Math.PI*60, 
+        probeDepth:0, 
+        probeX:0,
+        probeY:0,
+        resources:0,
+        randomTimer:0,
+        driving: false,
+        drilling: false,
+        extracting: false,
+        collided: false,
+        exploded: false
+      });
+
+      // Setup game.obstacles
+      game.obstacles.push({
+        x: -111,
+        y: -53,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 100,
+        y: 0,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -50,
+        y: 100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -100,
+        y: -20,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -70,
+        y: -70,
+        r: 25,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -120,
+        y: 50,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 47,
+        y: -65,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+    }
+
+    else if (game.currentLevel === 2) {
+      // Setup NPCs
+      game.hippies.push({
+        a:1.5*Math.PI,
+        randomTimer:0,
+        dead: false
+      });
+      game.hippies.push({
+        a:.5*Math.PI,
+        randomTimer:0,
+        dead: false
+      });
+
+      // Setup game.enemies
+      game.enemies.push({
+        x:0, 
+        y:0,
+        a:4.6, 
+        c:4.6*60, 
+        probeDepth:0, 
+        probeX:0,
+        probeY:0,
+        resources:0,
+        randomTimer:0,
+        driving: false,
+        drilling: false,
+        extracting: false,
+        collided: false,
+        exploded: false
+      });
+
+      game.obstacles.push({
+        x: 0,
+        y: 0,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      // Setup game.obstacles
+      game.obstacles.push({
+        x: 77,
+        y: 32,
+        r: 20,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: 100,
+        y: 0,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -120,
+        y: 30,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -100,
+        y: 0,
+        r: 20,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -50,
+        y: 120,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -50,
+        y: -100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 40,
+        y: 100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 76,
+        y: -30,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+    }
+
+    else if (game.currentLevel === 3) {
+      // Setup NPCs
+      game.hippies.push({
+        a:1.5*Math.PI,
+        randomTimer:0,
+        dead: false
+      });
+
+      // Setup game.enemies
+      game.enemies.push({
+        x:0, 
+        y:0, 
+        a:Math.PI, 
+        c:Math.PI*60, 
+        probeDepth:0, 
+        probeX:0,
+        probeY:0,
+        resources:0,
+        randomTimer:0,
+        driving: false,
+        drilling: false,
+        extracting: false,
+        collided: false,
+        exploded: false
+      });
+
+      // Setup game.enemies
+      game.enemies.push({
+        x:0, 
+        y:0, 
+        a:1.8*Math.PI, 
+        c:1.8*Math.PI*60, 
+        probeDepth:0, 
+        probeX:0,
+        probeY:0,
+        resources:0,
+        randomTimer:0,
+        driving: false,
+        drilling: false,
+        extracting: false,
+        collided: false,
+        exploded: false
+      });
+
+      // Setup game.obstacles
+      game.obstacles.push({
+        x: 100,
+        y: -40,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -60,
+        y: -100,
+        r: 24,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -100,
+        y: -60,
+        r: 20,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 120,
+        y: -77,
+        r: 20,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -70,
+        y: 100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: 40,
+        y: 50,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: 47,
+        y: -65,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 0
+      });
+    }
+
+    else if (game.currentLevel === 4) {
+      // Setup NPCs
+      game.hippies.push({
+        a:1.5*Math.PI,
+        randomTimer:0,
+        dead: false
+      });
+      game.hippies.push({
+        a:1.2*Math.PI,
+        randomTimer:0,
+        dead: false
+      });
+
+      // Setup game.enemies
+      game.enemies.push({
+        x:0, 
+        y:0, 
+        a:Math.PI, 
+        c:Math.PI*60, 
+        probeDepth:0, 
+        probeX:0,
+        probeY:0,
+        resources:0,
+        randomTimer:0,
+        driving: false,
+        drilling: false,
+        extracting: false,
+        collided: false,
+        exploded: false
+      });
+      // Setup game.enemies
+      game.enemies.push({
+        x:0, 
+        y:0, 
+        a:0.5*Math.PI, 
+        c:0.5*Math.PI*60, 
         probeDepth:0, 
         probeX:0,
         probeY:0,
@@ -418,7 +755,52 @@ var sf = (function(){
         hit: false,
         breakable: true,
         broken: 0,
-        resources: 0
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -100,
+        y: -100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -130,
+        y: -40,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -80,
+        y: -10,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 40,
+        y: -100,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 47,
+        y: -65,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
       });
       game.obstacles.push({
         x: 40,
@@ -427,14 +809,50 @@ var sf = (function(){
         hit: false,
         breakable: true,
         broken: 0,
-        resources: 0
+        resources: 100
       });
       game.obstacles.push({
-        x: 47,
+        x: 99,
+        y: 33,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 77,
+        y: 60,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -99,
         y: -65,
         r: 25,
         hit: false,
         breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: -39,
+        y: 22,
+        r: 25,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 130,
+        y: -20,
+        r: 20,
+        hit: false,
+        breakable: false,
         broken: 0,
         resources: 0
       });
@@ -521,24 +939,23 @@ var sf = (function(){
         enemy.y = Math.sin(enemy.a) * game.planet.r;
 
         // Find best resource to steal
-        game.obstacles.filter(function(obstacle) { 
-          return obstacle.resources > 0 && obstacle.broken === 2; 
-        })
-        .forEach(function(resource) {
-          var distanceUnderground = maxDistance - (resource.x*resource.x + resource.y*resource.y);
-          if (distanceUnderground < nearestDistance) {
-            nearestDistance = distanceUnderground;
-            nearestAngle = Math.atan2(resource.y, resource.x);
-            currentResource = index;
-            foundResource = true;
-          };
+        game.obstacles.forEach(function(obstacle, index) {
+          if (obstacle.resources > 0 && obstacle.broken === 2) {    
+            var distanceUnderground = maxDistance - (obstacle.x*obstacle.x + obstacle.y*obstacle.y);
+            if (distanceUnderground < nearestDistance) {
+              nearestDistance = distanceUnderground;
+              nearestAngle = Math.atan2(obstacle.y, obstacle.x);
+              currentResource = index;
+              foundResource = true;
+            };
+          }
         });
 
         // Steal the resources!
         if (foundResource) {
           // Drill if close enough
           var angleDifference = Math.abs(nearestAngle-enemy.a)%(2*Math.PI);
-          if (angleDifference < 0.2) {
+          if (angleDifference < 0.13) {
             // Enemy probe control
             enemy.collided = false;
             enemy.probeX = (game.planet.r - enemy.probeDepth) * Math.cos(enemy.a);
@@ -569,8 +986,8 @@ var sf = (function(){
           }
           else { 
             // Move enemy to next resource
-            if (angleDifference>Math.PI) { enemy.c++; enemy.lastDirection = 4; }
-            else { enemy.c--; enemy.lastDirection = -4; }
+            if (Math.abs(nearestAngle-enemy.a)>Math.PI) { enemy.c++; }
+            else { enemy.c--; }
 
             // Stop sound if drilling interrupted
             if (enemy.drilling) { stopSound('drill' + index); enemy.drilling = false; }
@@ -883,16 +1300,17 @@ var sf = (function(){
       c.save();
       c.translate(shock.x, shock.y);
       c.rotate(shock.a);
-      c.fillStyle = 'green';
+      c.fillStyle = '#222222';
       c.fillRect(-3, -12, 6, 24);
       c.restore();
     });
 
     // Draw announcements
     if (game.won) {
+      var winMessage = game.currentLevel === 4 ? "A winner is you." : "You win!"
       c.fillStyle='#66FF66';
       c.font="72px Georgia";
-      c.fillText("You Win!", -150, 0);
+      c.fillText(winMessage, -150, 0);
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
