@@ -1007,8 +1007,8 @@ var sf = (function(){
           }
           else { 
             // Move enemy to next resource
-            var angleDifference = nearestAngle%(2*Math.PI) - enemy.a%(2*Math.PI);
-            if (angleDifference > Math.PI || angleDifference < 0) { enemy.c--; }
+            var angleDifference = nearestAngle%(Math.PI) - enemy.a%(Math.PI);
+            if (angleDifference > (0.5*Math.PI) || angleDifference < 0) { enemy.c--; }
             else { enemy.c++; }
 
             // Stop sound if drilling interrupted
