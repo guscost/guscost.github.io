@@ -1032,11 +1032,11 @@ var sf = (function(){
           else {
             var shouldMove = Math.abs(enemy.randomTimer) > 20;
             if (enemy.randomTimer < 0) { 
-              if (shouldMove) { enemy.c++; enemy.a = enemy.c/60; enemy.driving = true; } 
+              if (shouldMove) { enemy.c+=0.75; enemy.a = enemy.c/60; enemy.driving = true; } 
               enemy.randomTimer++; 
             }
             else if (enemy.randomTimer > 0) { 
-              if (shouldMove) { enemy.c--; enemy.a = enemy.c/60; enemy.driving = true; } 
+              if (shouldMove) { enemy.c-=0.75; enemy.a = enemy.c/60; enemy.driving = true; } 
               enemy.randomTimer--; 
             }
             if (!shouldMove && enemy.driving) { stopSound('drive' + index); enemy.driving = false; }
