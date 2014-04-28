@@ -1231,8 +1231,8 @@ var sf = (function(){
     c.textAlign = 'center';
     c.fillStyle='white';
     c.font='20px Georgia';
-    c.fillText('Resources: ' + game.rover.resources, -110, -game.planet.y+25);
-    c.fillText('Enemy: ' + game.totalEnemyResources, 100, -game.planet.y+25);
+    c.fillText('Resources: ' + game.rover.resources, -132, -game.planet.y+25);
+    c.fillText('Enemy: ' + game.totalEnemyResources, 120, -game.planet.y+25);
     c.beginPath();
     c.arc(0, -game.planet.y, 25, 0, 2*Math.PI, false);
     c.fillStyle = game.shockCooldown === 0 ? 'green' : 'red';
