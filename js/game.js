@@ -1187,11 +1187,13 @@ var sf = (function(){
         });
         // Detect enemy collisions 
         if (distanceUnderground < 10) {
-          game.enemies.filter(function(enemy) { return !enemy.exploded; }).forEach(function(enemy, index) {
-            var distanceToEnemy = Math.min(Math.abs(enemy.x-shock.x), Math.abs(enemy.y-shock.y));
-            if (distanceToEnemy < 50) {
-              distanceToEnemy = Math.sqrt(Math.pow(enemy.x-shock.x,2) + Math.pow(enemy.y-shock.y,2));
-              if (distanceToEnemy < 20) { explodeEnemy(index); }
+          game.enemies.forEach(function(enemy, index) {
+            if (!enemy.exploded) {
+              var distanceToEnemy = Math.min(Math.abs(enemy.x-shock.x), Math.abs(enemy.y-shock.y));
+              if (distanceToEnemy < 50) {
+                distanceToEnemy = Math.sqrt(Math.pow(enemy.x-shock.x,2) + Math.pow(enemy.y-shock.y,2));
+                if (distanceToEnemy < 20) { explodeEnemy(index); }
+              }
             }
           });
         }
