@@ -1200,7 +1200,7 @@ var sf = (function(){
     else {
       // End level if resources are all taken
       if (game.rover.resources + game.totalEnemyResources + game.hippyResources === game.totalResources) {
-        if (game.rover.resources > game.totalEnemyResources + game.hippyResources) {
+        if (game.rover.resources > game.totalEnemyResources) {
           game.won = true;
           game.loadTimer = 360;
         }
@@ -1324,9 +1324,9 @@ var sf = (function(){
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
-      c.fillStyle='#FFFF22';
+      c.fillStyle='#FFFF11';
       c.font="72px Georgia";
-      c.fillText(game.announcement, -100, 0);
+      c.fillText(game.announcement, -170, 0);
       game.announcementTimer--;
     }
 
