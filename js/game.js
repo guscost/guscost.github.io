@@ -648,6 +648,24 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
+        x: 60,
+        y: 83,
+        r: 20,
+        hit: false,
+        breakable: true,
+        broken: 0,
+        resources: 100
+      });
+      game.obstacles.push({
+        x: 90,
+        y: 90,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
         x: 120,
         y: -77,
         r: 20,
@@ -1202,11 +1220,11 @@ var sf = (function(){
       if (game.rover.resources + game.totalEnemyResources + game.hippyResources === game.totalResources) {
         if (game.rover.resources > game.totalEnemyResources) {
           game.won = true;
-          game.loadTimer = 360;
+          game.loadTimer = 300;
         }
         else {
           game.lost = true;
-          game.loadTimer = 360;
+          game.loadTimer = 300;
         }
       }
     }
