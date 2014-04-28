@@ -21,6 +21,7 @@ var sf = (function(){
   // Game object
   var game = {};
   game.currentLevel = 0;
+  game.playAgain = true;
   game.started = false;
 
   // Animation variables
@@ -1211,11 +1212,14 @@ var sf = (function(){
     }
     if (game.won) {
       if (game.loadTimer > 0) { game.loadTimer-- ; }
-      else { game.currentLevel++; game.setup(); };
+      else { game.currentLevel++; game.playAgain = true; game.setup(); };
     }
     else if (game.lost) {
       if (game.loadTimer > 0) { game.loadTimer--; }
-      else { game.currentLevel = 0; game.setup(); }
+      else { 
+        if (game.playAgain) { game.playAgain = false; game.setup(); }
+        else { game.currentLevel = 0; game.playAgain = true; game.setup(); }
+      }
     }
     else {
       // End level if resources are all taken
