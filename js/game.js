@@ -605,8 +605,8 @@ var sf = (function(){
       game.enemies.push({
         x:0, 
         y:0, 
-        a:1.8*Math.PI, 
-        c:1.8*Math.PI*60, 
+        a:0.7*Math.PI, 
+        c:0.7*Math.PI*60, 
         probeDepth:0, 
         probeX:0,
         probeY:0,
