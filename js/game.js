@@ -1308,7 +1308,7 @@ var sf = (function(){
       c.save();
       c.translate(shock.x, shock.y);
       c.rotate(shock.a);
-      c.fillStyle = '#222222';
+      c.fillStyle = 'black';
       c.fillRect(-3, -12, 6, 24);
       c.restore();
     });
