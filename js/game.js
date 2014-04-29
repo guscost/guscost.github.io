@@ -1214,7 +1214,7 @@ var sf = (function(){
     }
     if (game.won) {
       if (game.loadTimer > 0) { game.loadTimer-- ; }
-      else { game.currentLevel++; game.playAgain = true; game.setup(); };
+      else { game.currentLevel = (game.currentLevel+1)%5; game.playAgain = true; game.setup(); };
     }
     else if (game.lost) {
       if (game.loadTimer > 0) { game.loadTimer--; }
