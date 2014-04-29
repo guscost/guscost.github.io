@@ -492,15 +492,6 @@ var sf = (function(){
         exploded: false
       });
 
-      game.obstacles.push({
-        x: 0,
-        y: 0,
-        r: 20,
-        hit: false,
-        breakable: false,
-        broken: 0,
-        resources: 0
-      });
       // Setup game.obstacles
       game.obstacles.push({
         x: 77,
@@ -514,6 +505,15 @@ var sf = (function(){
       game.obstacles.push({
         x: 100,
         y: 0,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
+        x: -8,
+        y: -5,
         r: 20,
         hit: false,
         breakable: false,
@@ -781,7 +781,7 @@ var sf = (function(){
         resources: 100
       });
       game.obstacles.push({
-        x: -100,
+        x: -70,
         y: -100,
         r: 25,
         hit: false,
