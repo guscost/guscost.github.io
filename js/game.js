@@ -56,7 +56,7 @@ var sf = (function(){
     }
   };
   var drawObstacle = function(obstacle, sprite) {
-    c.drawImage(
+    ctx.drawImage(
       sprite, 
       obstacle.x - obstacle.r, 
       obstacle.y - obstacle.r, 
@@ -103,18 +103,18 @@ var sf = (function(){
 
     this.draw = function(context)
     {
-      c.save();
-      c.translate(this.x, this.y);
-      c.scale(this.scale, this.scale);
-      c.beginPath();
-      c.arc(0, 0, this.radius, 0, Math.PI*2, true);
-      c.closePath();
-      c.fillStyle = this.fillColor;
-      c.fill();
-      //c.lineWidth = this.strokeWidth;
-      //c.strokeStyle = this.strokeColor;
-      //c.stroke();
-      c.restore();
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.scale(this.scale, this.scale);
+      ctx.beginPath();
+      ctx.arc(0, 0, this.radius, 0, Math.PI*2, true);
+      ctx.closePath();
+      ctx.fillStyle = this.fillColor;
+      ctx.fill();
+      //ctx.lineWidth = this.strokeWidth;
+      //ctx.strokeStyle = this.strokeColor;
+      //ctx.stroke();
+      ctx.restore();
     };
   }
 
@@ -146,11 +146,11 @@ var sf = (function(){
   function makeExplosion (x,y,color) {
     playSound('explosion');
     drawExplosion(x,y,color);
-  };
+  }
   function explodeObstacle(i) {
     makeExplosion(game.obstacles[i].x, game.obstacles[i].y,'#AAAAAA');
     game.obstacles.splice(i, 1);
-  };
+  }
   function explodeEnemy(i) {
     makeExplosion(game.enemies[i].x, game.enemies[i].y,'#BB3333');
     // Stop sound if drilling interrupted
@@ -159,7 +159,15 @@ var sf = (function(){
     if (game.enemies[i].extracting) { stopSound('extract' + i); game.enemies[i].extracting = false; }
     game.enemies[i].probeDepth = 0;
     game.enemies[i].exploded = true;
-  };
+  }
+  function getNearestDirection(a1, a2) {
+    var angleDifference = a2 < a1 ? (2*Math.PI - a1 + a2) : (a2 - a1); 
+    return angleDifference < Math.PI ? 1 : -1;
+  }
+  function getAngle(a) {
+    var c = Math.floor(a/(2*Math.PI)); 
+    return a-c*2*Math.PI;
+  }
 
   // Set up audio context
   if ('AudioContext' in window) {
@@ -909,7 +917,8 @@ var sf = (function(){
       hippy.y = Math.sin(hippy.a) * game.planet.r;
 
       if (!game.lost && !hippy.dead && !game.rover.exploded && 
-        Math.pow(hippy.x-game.rover.x, 2) + Math.pow(hippy.y-game.rover.y, 2) < 500) 
+        Math.pow(hippy.x-game.rover.x, 2) + Math.pow(hippy.y-game.rover.y, 2) < 1000 &&
+        (getNearestDirection(getAngle(hippy.a), getAngle(game.rover.a)) < 0 ? game.left : game.right)) 
       {
         playSound('splat');
         hippy.dead = true;
@@ -1008,8 +1017,7 @@ var sf = (function(){
           }
           else { 
             // Move enemy to next resource
-            var angleDifference = nearestAngle < enemy.a ? (2*Math.PI - enemy.a + nearestAngle) : (nearestAngle - enemy.a); 
-            enemy.c += angleDifference < Math.PI ? 1 : -1;
+            enemy.c += getNearestDirection(getAngle(enemy.a), nearestAngle);
             //if (nearestAngle > 2*Math.PI) { console.log(nearestAngle); }
             //if ((nearestAngle - enemy.a%(2*Math.PI) + 2*Math.PI) % 2*Math.PI < Math.PI) { enemy.c++; }
             //else { enemy.c--; }
@@ -1246,29 +1254,29 @@ var sf = (function(){
 
     // Clear screen
     var gameWidthHalf = game.width/2, gameHeightHalf = game.height/2;
-    var backgroundPattern = c.createPattern(backgroundImg, 'repeat');
-    c.fillStyle = backgroundPattern;
-    c.fillRect(0, 0, game.width, game.height);
+    var backgroundPattern = ctx.createPattern(backgroundImg, 'repeat');
+    ctx.fillStyle = backgroundPattern;
+    ctx.fillRect(0, 0, game.width, game.height);
 
     // Translate to planet center
-    c.translate(game.planet.x, game.planet.y);
+    ctx.translate(game.planet.x, game.planet.y);
 
     // Draw HUD
-    c.textAlign = 'center';
-    c.fillStyle='white';
-    c.font='20px Georgia';
-    c.fillText('Resources: ' + game.rover.resources, -132, -game.planet.y+25);
-    c.fillText('Enemy: ' + game.totalEnemyResources, 120, -game.planet.y+25);
-    c.beginPath();
-    c.arc(0, -game.planet.y, 25, 0, 2*Math.PI, false);
-    c.fillStyle = game.shockCooldown === 0 ? 'green' : 'red';
-    c.fill();
-    c.lineWidth = 3;
-    c.strokeStyle = '#222';
-    c.stroke();
+    ctx.textAlign = 'center';
+    ctx.fillStyle='white';
+    ctx.font='20px Georgia';
+    ctx.fillText('Resources: ' + game.rover.resources, -132, -game.planet.y+25);
+    ctx.fillText('Enemy: ' + game.totalEnemyResources, 120, -game.planet.y+25);
+    ctx.beginPath();
+    ctx.arc(0, -game.planet.y, 25, 0, 2*Math.PI, false);
+    ctx.fillStyle = game.shockCooldown === 0 ? 'green' : 'red';
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#222';
+    ctx.stroke();
 
     // Draw game.planet
-    c.drawImage(moonImg, -game.planet.r-25, -game.planet.r-25, game.planet.d+50, game.planet.d+50);    
+    ctx.drawImage(moonImg, -game.planet.r-25, -game.planet.r-25, game.planet.d+50, game.planet.d+50);    
 
     // Draw obstacles
     for (var i = game.obstacles.length - 1; i >= 0; i -= 1) {
@@ -1285,30 +1293,30 @@ var sf = (function(){
         else { explodeObstacle(i); }
       }
       else { drawObstacle(game.obstacles[i], staticBoulderImg); }
-      // c.beginPath();
-      // c.arc(obstacle.x,obstacle.y, obstacle.r, 0, 2 * Math.PI, false);
-      // c.fillStyle = "rgb(" + (256-obstacle.broken*30) + ", " + obstacle.resources*3 + ", 0)";
-      // c.fill();
+      // ctx.beginPath();
+      // ctx.arc(obstacle.x,obstacle.y, obstacle.r, 0, 2 * Math.PI, false);
+      // ctx.fillStyle = "rgb(" + (256-obstacle.broken*30) + ", " + obstacle.resources*3 + ", 0)";
+      // ctx.fill();
     }
 
     // Draw NPCs
     game.hippies.forEach(function(hippy){
-      c.save()
-      c.rotate(hippy.a);
-      if (!hippy.dead) { c.drawImage(hippyImg, game.planet.r-1, -13, 60, 26); }
-      else { c.drawImage(deadHippyImg, game.planet.r-1, -13, 22, 26); }
-      c.restore();
+      ctx.save()
+      ctx.rotate(hippy.a);
+      if (!hippy.dead) { ctx.drawImage(hippyImg, game.planet.r-1, -13, 60, 26); }
+      else { ctx.drawImage(deadHippyImg, game.planet.r-1, -13, 22, 26); }
+      ctx.restore();
     });
 
     // Draw enemies
     game.enemies.forEach(function (enemy) {
-      c.save()
-      c.rotate(enemy.a);
-      if (!enemy.exploded) { c.drawImage(enemyImg, game.planet.r-1, -25, 30, 54); }
-      else { c.drawImage(deadEnemyRoverImg, game.planet.r-1, -25, 30, 54); }
-      c.fillStyle = 'black';
-      c.fillRect(game.planet.r - enemy.probeDepth, -2, enemy.probeDepth, 4);
-      c.restore();
+      ctx.save()
+      ctx.rotate(enemy.a);
+      if (!enemy.exploded) { ctx.drawImage(enemyImg, game.planet.r-1, -25, 30, 54); }
+      else { ctx.drawImage(deadEnemyRoverImg, game.planet.r-1, -25, 30, 54); }
+      ctx.fillStyle = 'black';
+      ctx.fillRect(game.planet.r - enemy.probeDepth, -2, enemy.probeDepth, 4);
+      ctx.restore();
     });
 
     // Draw game.explosions
@@ -1316,50 +1324,50 @@ var sf = (function(){
     particles.forEach(function(particle){ particle.update(20); particle.draw(); })
 
     // Draw rover in ROVER CONTEXT
-    c.save()
-    c.rotate(game.rover.a);
-    if (!game.rover.exploded) { c.drawImage(roverImg, game.planet.r-1, -25, 30, 54); }
-    else { c.drawImage(deadRoverImg, game.planet.r-1, -25, 30, 54); }
+    ctx.save()
+    ctx.rotate(game.rover.a);
+    if (!game.rover.exploded) { ctx.drawImage(roverImg, game.planet.r-1, -25, 30, 54); }
+    else { ctx.drawImage(deadRoverImg, game.planet.r-1, -25, 30, 54); }
     // Draw probe
-    c.fillStyle = 'black';
-    c.fillRect(game.planet.r - game.rover.probeDepth, -2, game.rover.probeDepth, 4);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(game.planet.r - game.rover.probeDepth, -2, game.rover.probeDepth, 4);
     // END ROVER CONTEXT
-    c.restore();
+    ctx.restore();
 
     // Draw shockwaves
     game.shocks.filter(function(shock){ return shock.on; }).forEach(function (shock) {
-      c.save();
-      c.translate(shock.x, shock.y);
-      c.rotate(shock.a);
-      c.fillStyle = 'black';
-      c.fillRect(-3, -12, 6, 24);
-      c.restore();
+      ctx.save();
+      ctx.translate(shock.x, shock.y);
+      ctx.rotate(shock.a);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(-3, -12, 6, 24);
+      ctx.restore();
     });
 
     // Draw announcements
     if (game.won) {
       var winMessage = game.currentLevel === 4 ? 'A winner is you.' : 'You win!';
       var winFont = game.currentLevel === 4 ? '60px Georgia' : '72px Georgia';
-      c.fillStyle = '#66FF66';
-      c.font = winFont;
-      c.fillText(winMessage, 0, 0);
+      ctx.fillStyle = '#66FF66';
+      ctx.font = winFont;
+      ctx.fillText(winMessage, 0, 0);
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
-      c.fillStyle = '#FF5555';
-      c.font = '72px Georgia';
-      c.fillText('You Lose!', 0, 0);
+      ctx.fillStyle = '#FF5555';
+      ctx.font = '72px Georgia';
+      ctx.fillText('You Lose!', 0, 0);
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
-      c.fillStyle = '#FFFF11';
-      c.font = '66px Georgia';
-      c.fillText(game.announcement, 0, 0);
+      ctx.fillStyle = '#FFFF11';
+      ctx.font = '66px Georgia';
+      ctx.fillText(game.announcement, 0, 0);
       game.announcementTimer--;
     }
 
     // Translate back
-    c.translate(-game.planet.x, -game.planet.y);
+    ctx.translate(-game.planet.x, -game.planet.y);
   };
 
   // Key handlers
@@ -1393,8 +1401,8 @@ var sf = (function(){
   };
 
   // Canvas element
-  var canvas = document.getElementById("canvas");
-  var c = canvas.getContext('2d');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
 
   // Resize event
   var setSize = function() {
