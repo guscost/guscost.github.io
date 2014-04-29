@@ -917,8 +917,8 @@ var sf = (function(){
       hippy.y = Math.sin(hippy.a) * game.planet.r;
 
       if (!game.lost && !hippy.dead && !game.rover.exploded && 
-        Math.pow(hippy.x-game.rover.x, 2) + Math.pow(hippy.y-game.rover.y, 2) < 1000 &&
-        (getNearestDirection(getAngle(hippy.a), getAngle(game.rover.a)) < 0 ? game.left : game.right)) 
+        Math.pow(hippy.x-game.rover.x, 2) + Math.pow(hippy.y-game.rover.y, 2) < 900 &&
+        (getNearestDirection(getAngle(hippy.a), getAngle(game.rover.a)) < 0 ? game.right : game.left)) 
       {
         playSound('splat');
         hippy.dead = true;
