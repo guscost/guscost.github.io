@@ -976,7 +976,7 @@ var sf = (function(){
             var distanceUnderground = maxDistance - (obstacle.x*obstacle.x + obstacle.y*obstacle.y);
             if (distanceUnderground < nearestDistance) {
               nearestDistance = distanceUnderground;
-              nearestAngle = Math.atan2(obstacle.y, obstacle.x);
+              nearestAngle = getAngle(Math.atan2(obstacle.y, obstacle.x));
               currentResource = index;
               foundResource = true;
             };
@@ -1417,6 +1417,7 @@ var sf = (function(){
   game.setup();
 
   return {
-    game: game
+    game: game,
+    getAngle: getAngle
   };
 }).call(this);
