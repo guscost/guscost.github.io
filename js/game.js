@@ -1362,6 +1362,11 @@ var sfApp = (function(){
       ctx.font = winFont;
       ctx.strokeText(winMessage, 0, 0);
       ctx.fillText(winMessage, 0, 0);
+      if (game.hippies.length > 0 && !game.hippies.some(function(hippy){ return (hippy.dead); })) {
+        ctx.font = '32px Georgia';
+        ctx.strokeText('Compassion Bonus!', 0, 40);
+        ctx.fillText('Compassion Bonus!', 0, 40);
+      }
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
