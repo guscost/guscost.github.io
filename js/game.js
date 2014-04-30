@@ -1,4 +1,4 @@
-var sf = (function(){
+var sfApp = (function(){
 
   // Audio variables
   var myAudioContext;
@@ -762,6 +762,15 @@ var sf = (function(){
 
       // Setup game.obstacles
       game.obstacles.push({
+        x: 6,
+        y: -130,
+        r: 20,
+        hit: false,
+        breakable: false,
+        broken: 0,
+        resources: 0
+      });
+      game.obstacles.push({
         x: -20,
         y: 0,
         r: 20,
@@ -1349,19 +1358,25 @@ var sf = (function(){
       var winMessage = game.currentLevel === 4 ? 'A winner is you.' : 'You win!';
       var winFont = game.currentLevel === 4 ? '60px Georgia' : '72px Georgia';
       ctx.fillStyle = '#66FF66';
+      ctx.strokeStyle='#FFFFFF';
       ctx.font = winFont;
+      ctx.strokeText(winMessage, 0, 0);
       ctx.fillText(winMessage, 0, 0);
       if (!game.endPlayed) { playSound('fanfare'); game.endPlayed = true; }
     }
     else if (game.lost) {
       ctx.fillStyle = '#FF5555';
+      ctx.strokeStyle='#FFFFFF';
       ctx.font = '72px Georgia';
+      ctx.strokeText('You Lose!',0,0);
       ctx.fillText('You Lose!', 0, 0);
       if (!game.endPlayed) { playSound('boo'); game.endPlayed = true; }
     }
     else if (game.announcement != '' && game.announcementTimer > 0) {
       ctx.fillStyle = '#FFFF11';
+      ctx.strokeStyle='#BBBBBB';
       ctx.font = '66px Georgia';
+      ctx.strokeText(game.announcement, 0, 0);
       ctx.fillText(game.announcement, 0, 0);
       game.announcementTimer--;
     }
@@ -1416,8 +1431,8 @@ var sf = (function(){
   // Setup game
   game.setup();
 
+  // Return public variables
   return {
-    game: game,
-    getAngle: getAngle
+    game: game
   };
-}).call(this);
+}());
