@@ -339,6 +339,8 @@ var sfApp = (function(){
     game.announcementTimer = 0;
 
     if (game.currentLevel === 0) {
+      // Reset retry
+      game.playAgain = true;
       // Setup game.enemies
       game.enemies.push({
         x:0, 
