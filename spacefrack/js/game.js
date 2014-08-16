@@ -237,11 +237,11 @@ var sfApp = (function(){
   moonImg.src = 'img/moon.png';
   roverImg.src = 'img/rover.png';
   enemyImg.src = 'img/enemyRover.png';
-  hippyImg.src = '/img/hippyWithHelmet.png';
-  deadRoverImg.src = '/img/deadRover.png';
-  deadEnemyRoverImg.src = '/img/deadEnemyRover.png';
-  deadHippyImg.src = '/img/deadHippy.png';
-  backgroundImg.src = '/img/background.png';
+  hippyImg.src = 'img/hippyWithHelmet.png';
+  deadRoverImg.src = 'img/deadRover.png';
+  deadEnemyRoverImg.src = 'img/deadEnemyRover.png';
+  deadHippyImg.src = 'img/deadHippy.png';
+  backgroundImg.src = 'img/background.png';
 
   staticBoulderImg.src = 'img/boulder0.png';
   emptyBoulderImg[0].src = 'img/boulder1.png';
