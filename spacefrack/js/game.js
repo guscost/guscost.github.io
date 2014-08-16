@@ -241,7 +241,7 @@ var sfApp = (function(){
   deadRoverImg.src = '/img/deadRover.png';
   deadEnemyRoverImg.src = '/img/deadEnemyRover.png';
   deadHippyImg.src = '/img/deadHippy.png';
-  backgroundImg.src = '/img/background.jpg';
+  backgroundImg.src = '/img/background.png';
 
   staticBoulderImg.src = 'img/boulder0.png';
   emptyBoulderImg[0].src = 'img/boulder1.png';
