@@ -161,7 +161,7 @@ var data = (function() {
 				isWarp: false,
 				stable: true,
 				solid: true,
-				mass: 100
+				mass: 100000
 			},{
 				image: null,
 				x: 594,
@@ -173,7 +173,7 @@ var data = (function() {
 				stable: true,
 				solid: true,
 				isWarp: false,
-				mass: 10
+				mass: 100000
 			}];
 			this.ground = [600,600,600,600,600,600,600,600];
 			this.accelerator = { x: 200, y: 570 };
