@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Connected Worlds!</title>
+
+        <meta name="description" content="Connected Worlds!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/base64-binary.js"></script>
+
+    </head>
+    <body style="background: #000; color: #FFF;">
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <canvas id="canvas">LOADING</canvas>
+
+        <!--MUSIC-->
+        <audio loop>
+          <source src="sound/themeSong.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <!--SOUNDS-->
+        <script src="sound/hum.js"></script>
+        <script src="sound/warp.js"></script>
+        <script src="sound/tick.js"></script>
+        <script src="sound/throw.js"></script>
+        <script src="sound/jump.js"></script>
+
+        <!--GAME-->
+        <script src="js/plugins.js"></script>
+        <script src="js/game.data.js"></script>
+        <script src="js/game.drawing.js"></script>
+        <script src="js/game.audio.js"></script>
+        <script src="js/game.js"></script>
+
+    </body>
+</html>
