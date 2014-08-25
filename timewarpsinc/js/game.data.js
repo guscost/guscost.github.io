@@ -61,13 +61,16 @@ var data = (function() {
 		'intro_1': new (function() {
 			this.setup = noop;
 			this.done = function() { game.goToStage('intro_2'); };
-			this.isDone = function() { return d.player.x > 400 && d.player.x < 420 && d.player.y === 600; };
+			this.isDone = function() { return d.player.x > 370 && d.player.x < 410 && d.player.y === 600; };
 			this.settings = { control: true, indoors: false, past: false, background: 'exterior_1' };
 			this.npcs = [{ x: 560, y: 600 }];
 			this.ground = [600,600,600,600,600,600,600,600];
 			this.objects = [];
 			this.accelerator = { x: 0, y: 999 };
 			this.messages = [{
+				t: "TIME WARPS INC",
+				x: 300, y: 320
+			},{
 				t: "Please come in.",
 				x: 360, y: 320
 			}];
@@ -75,7 +78,7 @@ var data = (function() {
 		'intro_2': new (function() {
 			var that = this;
 			this.setup = function() { d.currentMessage = 0; d.player.x = 280; d.player.y = 600; };
-			this.done = function() { d.currentMessage = 0; d.player.x = 100; d.player.y = 600; game.goToStage('level_1') };
+			this.done = function() { d.currentMessage = 0; d.player.x = 130; d.player.y = 600; game.goToStage('level_1') };
 			this.isDone = function() { return d.player.x === 960; };
 			this.settings = { control: false, indoors: true, past: false, background: 'interior_1' };
 			this.npcs = [{ x: 560, y: 600 }];
@@ -246,8 +249,8 @@ var data = (function() {
 				mass: 1000
 			},{
 				image: null,
-				x: 580,
-				y: 463, 
+				x: 836,
+				y: 464, 
 				dx: 0,
 				dy: 0,
 				halfWidth: 8,
@@ -257,12 +260,12 @@ var data = (function() {
 					that.objects[1].solid = false;
 					data.storyboard['level_1'].objects[1].isWarp = true; 
 					data.storyboard['level_1'].messages.push({
-						t: "And here it is! I guess I was reminded to put it somewhere safer. This worked great!.",
+						t: "And here it is! I guess I was reminded to put it somewhere safer. This worked great!",
 						x: 50, y: 320
 					});
 					data.storyboard['level_1'].messages.push({
 						t: "That's the easiest paycheck I've ever earned.",
-						x: 150, y: 320
+						x: 240, y: 320
 					});
 					data.storyboard['level_1'].messages.push({
 						s: function() { 1=0; },
