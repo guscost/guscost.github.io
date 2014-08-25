@@ -22,7 +22,7 @@ var game = (function(){
 	window.clearTimeout;
 
 	var startGame = function() {
-		//$('audio')[0].play();
+		document.getElementById('audio').play();
 		game.run();
 	};
 
