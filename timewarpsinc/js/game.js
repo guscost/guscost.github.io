@@ -218,7 +218,7 @@ var game = (function(){
 	window.addEventListener('keydown', function(event) {
 		if (event.keyCode === data.keys.LEFT) { event.preventDefault(); data.left = true; }
 		else if (event.keyCode === data.keys.RIGHT) { event.preventDefault(); data.right = true; }
-		else if (event.keyCode === data.keys.UP) { g.goToStage('level_1'); event.preventDefault(); data.up = true; }
+		else if (event.keyCode === data.keys.UP) { event.preventDefault(); data.up = true; }
 		else if (event.keyCode === data.keys.DOWN) { event.preventDefault(); data.down = true; }
 		else if (event.keyCode === data.keys.SPACE) { event.preventDefault(); data.space = true; }
 
@@ -231,6 +231,7 @@ var game = (function(){
 		else if (event.keyCode === data.keys.ENTER) {
 			// show next message
 			if(data.storyboard[data.currentStage].messages.length > data.currentMessage) {
+				game.playSound('tick');
 				var messageObject = data.storyboard[data.currentStage].messages[++data.currentMessage];
 				if (messageObject !== undefined && messageObject.s !== undefined) { messageObject.s(); }
 			}

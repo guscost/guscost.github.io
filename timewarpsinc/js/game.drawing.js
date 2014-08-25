@@ -230,7 +230,9 @@ var game = (function() {
 		// Draw projectile
 		ctx.save();
 		ctx.translate(data.projectile.x, data.projectile.y);
-		ctx.drawImage(data.projectileImgs[0], -8, -8, 16, 16);
+		ctx.fillStyle = '#660009';
+		ctx.fillRect(-8,-8,16,16);
+		//ctx.drawImage(data.projectileImgs[0], -8, -8, 16, 16);
 		ctx.restore();
 
 		// Draw foregrounds

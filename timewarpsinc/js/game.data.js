@@ -39,7 +39,8 @@ var data = (function() {
 	d.backgroundImgs = { 
 		'exterior_1': new Image(),
 		'interior_1': new Image(),
-		'interior_2': new Image()
+		'interior_2': new Image(),
+		'gameover': new Image()
 	};
 
 	// Image files
@@ -69,10 +70,10 @@ var data = (function() {
 			this.accelerator = { x: 0, y: 999 };
 			this.messages = [{
 				t: "TIME WARPS INC",
-				x: 300, y: 320
+				x: 300, y: 340
 			},{
 				t: "Please come in.",
-				x: 360, y: 320
+				x: 360, y: 340
 			}];
 		})(),
 		'intro_2': new (function() {
@@ -87,13 +88,13 @@ var data = (function() {
 			this.accelerator = { x: 0, y: 999 };
 			this.messages = [{
 				t: "Have you used our service before?",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "No.",
-				x: 360, y: 320
+				x: 360, y: 340
 			},{
 				t: "OK, in that case I'll briefly describe what we're going to do.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				s: function() { 
 					that.accelerator.x = 410;
@@ -102,43 +103,43 @@ var data = (function() {
 					game.drawParticles(that.accelerator.x, that.accelerator.y, '#FFFFFF');
 				},
 				t: "This is a superluminal baryon accelerator.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "It makes what we call \"gates\".",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "Basically, what these gates do is accelerate projectiles to faster than light speed, thereby sending them back in time.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "There are a lot of scientific details involved, but what happens is that each projectile arrives in the past with the same momentum as when it first hit the gate.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "Unfortunately due to the superluminal speeds, radio signals can't get through, which means no drones.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "For the same reason any living creatures cannot survive the transport.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "What we can do is send tiny amounts of matter through. By measuring quantum flibbetyjibbets we can map out the past environment in the immediate vicinity.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "This way, we can model what happened in the past after sending a projectile through, and come up with a strategy to achieve the intended result.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "TimeWarps Inc. assumes no liability for any damage to the fabric of spacetime that might occur as a result.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "So what do you need fixed?",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "We had a break-in about 5 years back. Most of the stolen items were replaceable, but there was this one thing.",
-				x: 360, y: 320
+				x: 360, y: 340
 			},{
 				t: "I really feel terrible about losing it. What I'd like is to convince my former self to take better care of it.",
-				x: 360, y: 320
+				x: 360, y: 340
 			},{
 				t: "It used to be kept in the room to the right.",
-				x: 360, y: 320
+				x: 360, y: 340
 			}]
 		})(),
 		'level_1': new (function() {
@@ -177,21 +178,21 @@ var data = (function() {
 			this.ground = [600,600,600,600,600,600,600,600];
 			this.accelerator = { x: 200, y: 570 };
 			this.messages = [{
-				t: "We need to find something that was in a consistent location at the time of the flood.",
-				x: 100, y: 320
+				t: "We need to find something that was in a consistent location prior to the break-in.",
+				x: 100, y: 340
 			},{
 				t: "Beep beep boop.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				s: function() { that.objects[0].isWarp = true; },
 				t: "OK, this will do.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "I'll throw projectiles through this gate by pressing the \"Shift\" key.",
-				x: 100, y: 320
+				x: 100, y: 340
 			},{
 				t: "I can throw the projectiles farther by holding down the \"Shift\" key longer.",
-				x: 100, y: 320
+				x: 100, y: 340
 			}]
 		})(),
 		'level_1_past': new (function() {
@@ -199,7 +200,7 @@ var data = (function() {
 			this.timer = 0;
 			this.setup = function() { that.timer = 140; d.player.present = false; };
 			this.warp = noop;
-			this.done = function() { d.projectile.x = 999; game.goToStage('level_1'); };
+			this.done = function() { d.projectile.x = 9999; game.goToStage('level_1'); };
 			this.isDone = function() { that.timer--; return !that.timer; };
 			this.settings = { control: false, indoors: true, past: true, background: 'interior_2' };
 			this.npcs = [];
@@ -228,8 +229,8 @@ var data = (function() {
 					that.objects[1].solid = false;
 					data.storyboard['level_1'].objects[1].isWarp = true; 
 					data.storyboard['level_1'].messages.push({
-						t: "Aha, we've lined up the past and present and opened another gate. Let's try this one out.",
-						x: 100, y: 320
+						t: "Aha, we've lined up the past and present, opening another gate. Let's try this one out.",
+						x: 100, y: 340
 					});
 				},
 				solid: true,
@@ -261,17 +262,39 @@ var data = (function() {
 					data.storyboard['level_1'].objects[1].isWarp = true; 
 					data.storyboard['level_1'].messages.push({
 						t: "And here it is! I guess I was reminded to put it somewhere safer. This worked great!",
-						x: 50, y: 320
+						x: 50, y: 340
 					});
 					data.storyboard['level_1'].messages.push({
 						t: "That's the easiest paycheck I've ever earned.",
-						x: 240, y: 320
+						x: 240, y: 340
 					});
 					data.storyboard['level_1'].messages.push({
-						s: function() { 1=0; },
 						t: "THE END",
-						x: 300, y: 320
+						x: 300, y: 340
 					});
+				},
+				solid: true,
+				isWarp: false,
+				mass: 10
+			},{
+				image: null,
+				x: 990,
+				y: 480, 
+				dx: 0,
+				dy: 0,
+				halfWidth: 20,
+				halfHeight: 480,
+				stable: false,
+				topple: function() { 
+					d.projectile.x = 9999; 
+					for(var i = 0; i < 16; i++) {
+						window.setTimeout(function(){ game.playSound('tick'); }, i);
+					}
+					that.done = function() {
+						game.playSound('hum');	
+						d.currentMessage = 0; 
+						game.goToStage('gameover'); 
+					}; 
 				},
 				solid: true,
 				isWarp: false,
@@ -280,6 +303,23 @@ var data = (function() {
 			this.ground = [600,600,600,600,600,600,600,600];
 			this.accelerator = { x: 0, y: 999 };
 			this.messages = []
+		})(),
+		'gameover': new (function() {
+			this.setup = noop;
+			this.done = function() { };
+			this.isDone = function() { return false; };
+			this.settings = { control: false, indoors: false, past: false, background: 'gameover' };
+			this.npcs = [];
+			this.ground = [600,600,600,600,600,600,600,600];
+			this.objects = [];
+			this.accelerator = { x: 0, y: 999 };
+			this.messages = [{
+				t: "Lizard people have taken over the planet. Oh no!",
+				x: 300, y: 340
+			},{
+				t: "GAME OVER",
+				x: 300, y: 340
+			}];
 		})(),
 	};
 
