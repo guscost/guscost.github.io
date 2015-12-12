@@ -6,6 +6,10 @@
         <title>kendo-react-wrappers demo</title>
         <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-bootstrap.min.css" />
     	<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <style>
+            .content-box, .content-box * { box-sizing: content-box; }
+        </style>
     	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -15,7 +19,7 @@
         <script type="text/javascript" src="https://raw.githubusercontent.com/guscost/kendo-react-wrappers/master/KW.js"></script>
     </head>
     <body>
-        <div id="app"></div>
+        <div class="container" id="app"></div>
         <script type="text/babel">      
 
         	// app component
@@ -24,19 +28,37 @@
         		displayName: "KendoWidgetTest",
 
         		getInitialState: function () {
-        			return {
-        				selectedDate: "1/1/2015",
-        				selectedOption: "alpha",
-        				selectedNumber: 4
+        			return {    
+                        options: [{
+                            value: "a",
+                            nato: "Alfa",
+                            lapd: "Adam"
+                        },{
+                            value: "b",
+                            nato: "Bravo",
+                            lapd: "Boy"
+                        },{
+                            value: "c",
+                            nato: "Charlie",
+                            lapd: "Charles"
+                        }],             
+                        alphabet: "nato",
+                        selectedOption: "a",
+        				selectedDate: moment().toISOString(),
+        				selectedNumber: 214
         			};
         		},
 
+                _onChangeAlphabet: function (value) {             
+                    this.setState({ alphabet: value });
+                },
+
+                _onChangeSelectedOption: function (value) {             
+                    this.setState({ selectedOption: value });
+                },
+
         		_onChangeSelectedDate: function (value) {
         			this.setState({ selectedDate: value });
-        		},
-
-        		_onChangeSelectedOption: function (value) {    			
-        			this.setState({ selectedOption: value });
         		},
 
         		_onChangeSelectedNumber: function (value) {    			
@@ -44,36 +66,51 @@
         		},
 
         		render: function () {
-        			return <div>
-        				<div>
-	        				<KW.DatePicker
-		        				value={this.state.selectedDate}
-		        				onChange={this._onChangeSelectedDate} />
+        			return <div className="col-xs-12">
+                        <h2>Kendo React Wrappers Demo</h2>
+        				<div className="panel panel-default">
+                            <div className="panel-heading">Value binding</div>
+                            <div className="panel-body content-box">
 
-	        				<KW.DatePicker
-		        				value={this.state.selectedDate}
-		        				onChange={this._onChangeSelectedDate} />
-
-	        				<span>{this.props.selectedDate}</span>
+    	        				<KW.DatePicker
+    		        				value={this.state.selectedDate}
+    		        				onChange={this._onChangeSelectedDate} />
+                                {" "}
+    	        				<KW.DatePicker
+    		        				value={this.state.selectedDate}
+    		        				onChange={this._onChangeSelectedDate} />
+                                {" "}
+    	        				<span>{this.state.selectedDate}</span>
+                            </div>
         				</div>
-        				<div>
-	        				<KW.DropDownList
-	        					data={[{
-	        						value: "alpha",
-	        						text: "test alpha"
-	        					},{
-	        						value: "bravo",
-	        						text: "test bravo"
-	        					}]}
-		        				value={this.state.selectedOption}
-		        				dataTextField="text"
-		        				dataValueField="value"
-		        				onChange={this._onChangeSelectedOption} />
+        				<div className="panel panel-default">
+                            <div className="panel-heading">Some updates might rebuild widget</div>
+                            <div className="panel-body content-box">
+    	        				<KW.DropDownList
+    	        					data={this.state.options}
+    		        				value={this.state.selectedOption}
+    		        				dataTextField={this.state.alphabet}
+    		        				dataValueField="value"
+    		        				onChange={this._onChangeSelectedOption} />
+                                {" "}
+                                <div className="btn btn-default" onClick={this._onChangeAlphabet.bind(this, "nato")}>
+                                    Use NATO alphabet
+                                </div>
+                                {" "}
+                                <div className="btn btn-default" onClick={this._onChangeAlphabet.bind(this, "lapd")}>
+                                    Use LAPD alphabet
+                                </div>
+                            </div>
         				</div>
-        				<div>
-	        				<KW.NumericTextBox
-	        					value={this.state.selectedNumber}
-		        				onChange={this._onChangeSelectedNumber} />
+                        <div className="panel panel-default">
+                            <div className="panel-heading">Unconventional bindings</div>
+                            <div className="panel-body content-box">
+    	        				<KW.NumericTextBox
+    	        					value={this.state.selectedNumber}
+    		        				onChange={this._onChangeSelectedNumber}
+                                    step={3}
+                                    style={{ backgroundColor: "hsl(" + this.state.selectedNumber%360 + ", 40%, 90%)" }} />
+                            </div>
         				</div>
         			</div>;
         		}
