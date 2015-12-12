@@ -288,7 +288,7 @@ var data = (function() {
 				topple: function() { 
 					d.projectile.x = 9999; 
 					for(var i = 0; i < 16; i++) {
-						window.setTimeout(function(){ game.playSound('tick'); }, i);
+						window.setTimeout(function(){ game.playSound('tick'); }, i*13);
 					}
 					that.done = function() {
 						game.playSound('hum');	
