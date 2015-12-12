@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>kendo-react-wrappers demo</title>
+        <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.common-bootstrap.min.css" />
+    	<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.1111/styles/kendo.bootstrap.min.css" />
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://kendo.cdn.telerik.com/2015.3.1111/js/kendo.ui.core.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.min.js"></script>
+        <script type="text/javascript" src="https://raw.githubusercontent.com/guscost/kendo-react-wrappers/master/KW.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">      
+
+        	// app component
+        	var KendoWidgetTest = React.createClass({
+
+        		displayName: "KendoWidgetTest",
+
+        		getInitialState: function () {
+        			return {
+        				selectedDate: "1/1/2015",
+        				selectedOption: "alpha",
+        				selectedNumber: 4
+        			};
+        		},
+
+        		_onChangeSelectedDate: function (value) {
+        			this.setState({ selectedDate: value });
+        		},
+
+        		_onChangeSelectedOption: function (value) {    			
+        			this.setState({ selectedOption: value });
+        		},
+
+        		_onChangeSelectedNumber: function (value) {    			
+        			this.setState({ selectedNumber: value });
+        		},
+
+        		render: function () {
+        			return <div>
+        				<div>
+	        				<KW.DatePicker
+		        				value={this.state.selectedDate}
+		        				onChange={this._onChangeSelectedDate} />
+
+	        				<KW.DatePicker
+		        				value={this.state.selectedDate}
+		        				onChange={this._onChangeSelectedDate} />
+
+	        				<span>{this.props.selectedDate}</span>
+        				</div>
+        				<div>
+	        				<KW.DropDownList
+	        					data={[{
+	        						value: "alpha",
+	        						text: "test alpha"
+	        					},{
+	        						value: "bravo",
+	        						text: "test bravo"
+	        					}]}
+		        				value={this.state.selectedOption}
+		        				dataTextField="text"
+		        				dataValueField="value"
+		        				onChange={this._onChangeSelectedOption} />
+        				</div>
+        				<div>
+	        				<KW.NumericTextBox
+	        					value={this.state.selectedNumber}
+		        				onChange={this._onChangeSelectedNumber} />
+        				</div>
+        			</div>;
+        		}
+        	});
+
+			// start it up
+			ReactDOM.render(<KendoWidgetTest />, document.getElementById("app"));
+
+        </script>
+    </body>
+</html>
