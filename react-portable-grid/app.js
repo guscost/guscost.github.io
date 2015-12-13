@@ -19,23 +19,23 @@ var PortableGridTest = React.createClass({
         this.forceUpdate();
     },
     
-	_onChangeEmail: function (item, event) {
+    _onChangeEmail: function (item, event) {
         item.email = event.target.value;
         this.forceUpdate();
     },
-	
-	_onChangeZipCode: function (item, event) {
+    
+    _onChangeZipCode: function (item, event) {
         item.zipCode = event.target.value;
         this.forceUpdate();
     },
-	
+    
     render: function () {
         return <div className="col-xs-9">
             <h2>
-			    React Portable Grid demo 
-			    (<a href="https://github.com/guscost/react-portable-grid">github</a>)
-				(<a href="https://guscost.github.io/react-portable-grid/app.js">demo source</a>)
-			</h2>
+                React Portable Grid demo 
+                (<a href="https://github.com/guscost/react-portable-grid">github</a>)
+                (<a href="https://guscost.github.io/react-portable-grid/app.js">demo source</a>)
+            </h2>
             <PortableGrid 
                 scope={this}
                 data={this.state.data}
@@ -58,7 +58,7 @@ var PortableGridTest = React.createClass({
                         return moment(item.birthday).format("MMM D");                
                     }
                 },{
-					title: "",
+                    title: "",
                     width: "5%",
                     align: "center",
                     template: function (item) {
@@ -69,23 +69,23 @@ var PortableGridTest = React.createClass({
                 }]}
                 details={function (item) {                
                     return <div className="form form-horizontal" style={{ paddingTop: 20 }}>
-						<div className="form-group">
+                        <div className="form-group">
                             <label className="col-xs-2 control-label">Email:</label>
                             <div className="col-xs-9">
-								<input 
-									className="form-control" 
-									value={item.email} 
-									onChange={this._onChangeEmail.bind(this, item)} />
-							</div>
+                                <input 
+                                    className="form-control" 
+                                    value={item.email} 
+                                    onChange={this._onChangeEmail.bind(this, item)} />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Zip Code:</label>
                             <div className="col-xs-9">
-								<input 
-									className="form-control" 
-									value={item.zipCode} 
-									onChange={this._onChangeZipCode.bind(this, item)} />
-							</div>
+                                <input 
+                                    className="form-control" 
+                                    value={item.zipCode} 
+                                    onChange={this._onChangeZipCode.bind(this, item)} />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Summary:</label>
