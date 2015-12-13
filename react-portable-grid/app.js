@@ -31,7 +31,7 @@ var PortableGridTest = React.createClass({
 	
     render: function () {
         return <div className="col-xs-9">
-            <h2>Portable Grid Demo</h2>
+            <h2>React Portable Grid demo (<a href="https://github.com/guscost/react-portable-grid">source code</a>)</h2>
             <PortableGrid 
                 scope={this}
                 data={this.state.data}
