@@ -54,7 +54,7 @@ var PortableGridTest = React.createClass({
                         return moment(item.birthday).format("MMM D");                
                     }
                 },{
-                    title: " ",
+					title: "",
                     width: "5%",
                     align: "center",
                     template: function (item) {
@@ -64,10 +64,10 @@ var PortableGridTest = React.createClass({
                     }
                 }]}
                 details={function (item) {                
-                    return <div className="form form-horizontal" style={{ paddingTop: 10 }}>
+                    return <div className="form form-horizontal" style={{ paddingTop: 20 }}>
 						<div className="form-group">
                             <label className="col-xs-2 control-label">Email:</label>
-                            <div className="col-xs-6">
+                            <div className="col-xs-9">
 								<input 
 									className="form-control" 
 									value={item.email} 
@@ -76,7 +76,7 @@ var PortableGridTest = React.createClass({
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Zip Code:</label>
-                            <div className="col-xs-6">
+                            <div className="col-xs-9">
 								<input 
 									className="form-control" 
 									value={item.zipCode} 
@@ -85,7 +85,7 @@ var PortableGridTest = React.createClass({
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Summary:</label>
-                            <div className="col-xs-10 form-control-static">{item.summary}</div>
+                            <div className="col-xs-9 form-control-static">{item.summary}</div>
                         </div>
                     </div>;
                 }}
