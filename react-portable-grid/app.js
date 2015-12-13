@@ -19,6 +19,16 @@ var PortableGridTest = React.createClass({
         this.forceUpdate();
     },
     
+	_onChangeEmail: function (item, event) {
+        item.email = event.target.value;
+        this.forceUpdate();
+    },
+	
+	_onChangeZipCode: function (item, event) {
+        item.zipCode = event.target.value;
+        this.forceUpdate();
+    },
+	
     render: function () {
         return <div className="col-xs-9">
             <h2>Portable Grid Demo</h2>
@@ -55,9 +65,23 @@ var PortableGridTest = React.createClass({
                 }]}
                 details={function (item) {                
                     return <div className="form form-horizontal" style={{ paddingTop: 10 }}>
+						<div className="form-group">
+                            <label className="col-xs-2 control-label">Email:</label>
+                            <div className="col-xs-6">
+								<input 
+									className="form-control" 
+									value={item.email} 
+									onChange={this._onChangeEmail.bind(this, item)} />
+							</div>
+                        </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Zip Code:</label>
-                            <div className="col-xs-10 form-control-static">{item.zipCode}</div>
+                            <div className="col-xs-6">
+								<input 
+									className="form-control" 
+									value={item.zipCode} 
+									onChange={this._onChangeZipCode.bind(this, item)} />
+							</div>
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Summary:</label>
