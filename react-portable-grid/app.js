@@ -34,7 +34,7 @@ var PortableGridTest = React.createClass({
                 template: function template(item) {
                     return React.createElement(
                         "a",
-                        { href: "#", onClick: this._onClickRowDetails.bind(this, item) },
+                        { href: "#", onClick: this._onClickRowDetail.bind(this, item) },
                         React.createElement("span", { className: "glyphicon glyphicon-info-sign" })
                     );
                 }
@@ -62,7 +62,7 @@ var PortableGridTest = React.createClass({
         }
     },
 
-    _onClickRowDetails: function _onClickRowDetails(item) {
+    _onClickRowDetail: function _onClickRowDetail(item) {
         item._rowSelected = !item._rowSelected;
         this.forceUpdate();
     },
@@ -102,7 +102,7 @@ var PortableGridTest = React.createClass({
                 scope: this,
                 data: this.state.data,
                 columns: this.state.columns,
-                details: function (item) {
+                detail: function (item) {
                     return React.createElement(
                         "div",
                         { className: "form form-horizontal", style: { paddingTop: 20 } },

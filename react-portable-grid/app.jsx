@@ -30,7 +30,7 @@ var PortableGridTest = React.createClass({
                 width: "5%",
                 align: "center",
                 template: function (item) {
-                    return <a href="#" onClick={this._onClickRowDetails.bind(this, item)}>
+                    return <a href="#" onClick={this._onClickRowDetail.bind(this, item)}>
                         <span className="glyphicon glyphicon-info-sign"></span>
                     </a>;                
                 }
@@ -56,7 +56,7 @@ var PortableGridTest = React.createClass({
         }
     }, 
     
-    _onClickRowDetails: function (item) {
+    _onClickRowDetail: function (item) {
         item._rowSelected = !item._rowSelected;
         this.forceUpdate();
     },
@@ -82,7 +82,7 @@ var PortableGridTest = React.createClass({
                 scope={this}
                 data={this.state.data}
                 columns={this.state.columns}
-                details={function (item) {                
+                detail={function (item) {                
                     return <div className="form form-horizontal" style={{ paddingTop: 20 }}>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Email:</label>
