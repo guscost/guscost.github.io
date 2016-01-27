@@ -8,7 +8,7 @@ var PortableGridTest = React.createClass({
     getInitialState: function getInitialState() {
         return {
             currentPage: 1,
-            data: testData,
+            data: testData, // check testData.js for this object
             columns: [{
                 field: "firstName",
                 title: "First Name",
@@ -47,11 +47,11 @@ var PortableGridTest = React.createClass({
     },
 
     // the grid will pass in default functions here if we want to use them
-    // defaultSotOrder is a standard function to update the sort order prop
+    // defaultSortOrder is a standard function to update the sort order prop
     // using defaultSort can be super confusing but it might save some typing
     _onClickHeader: function _onClickHeader(column, defaultSortOrderUpdate, defaultSort) {
         if (column.field) {
-            // copy arrays first and then do setState() if you want to follow the rules        
+            // copy arrays first and then do setState() if you want to follow the rules
             var newSortOrder = defaultSortOrderUpdate(column.sort);
             this.state.columns.forEach(function (n) {
                 delete n.sort;

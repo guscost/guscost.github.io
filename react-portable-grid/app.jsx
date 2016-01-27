@@ -4,9 +4,9 @@ var PortableGridTest = React.createClass({
     displayName: "PortableGridTest",
 
     getInitialState: function () {
-        return {    
+        return {
             currentPage: 1,
-            data: testData,
+            data: testData, // check testData.js for this object
             columns: [{
                 field: "firstName",
                 title: "First Name",
@@ -23,7 +23,7 @@ var PortableGridTest = React.createClass({
                 title: "Birthday",
                 width: "15%",
                 template: function (item) {
-                    return moment(item.birthday).format("MMM D");                
+                    return moment(item.birthday).format("MMM D");
                 }
             },{
                 title: "",
@@ -32,7 +32,7 @@ var PortableGridTest = React.createClass({
                 template: function (item) {
                     return <a href="#" onClick={this._onClickRowDetail.bind(this, item)}>
                         <span className="glyphicon glyphicon-info-sign"></span>
-                    </a>;                
+                    </a>;
                 }
             }]
         };
@@ -43,62 +43,62 @@ var PortableGridTest = React.createClass({
     },
 
     // the grid will pass in default functions here if we want to use them
-    // defaultSotOrder is a standard function to update the sort order prop
+    // defaultSortOrder is a standard function to update the sort order prop
     // using defaultSort can be super confusing but it might save some typing
     _onClickHeader: function (column, defaultSortOrderUpdate, defaultSort) {
         if (column.field) {
-            // copy arrays first and then do setState() if you want to follow the rules         
-            var newSortOrder = defaultSortOrderUpdate(column.sort);   
-            this.state.columns.forEach(function (n) { delete n.sort; });     
+            // copy arrays first and then do setState() if you want to follow the rules
+            var newSortOrder = defaultSortOrderUpdate(column.sort);
+            this.state.columns.forEach(function (n) { delete n.sort; });
             this.state.data.sort(defaultSort.bind(null, column.field, newSortOrder));
             column.sort = newSortOrder;
             this.forceUpdate();
         }
-    }, 
-    
+    },
+
     _onClickRowDetail: function (item) {
         item._rowSelected = !item._rowSelected;
         this.forceUpdate();
     },
-    
+
     _onChangeEmail: function (item, event) {
         item.email = event.target.value;
         this.forceUpdate();
     },
-    
+
     _onChangeZipCode: function (item, event) {
         item.zipCode = event.target.value;
         this.forceUpdate();
     },
-    
+
     render: function () {
         return <div className="col-xs-9">
             <h2>
-                React Portable Grid demo 
+                React Portable Grid demo
                 (<a href="https://github.com/guscost/react-portable-grid">github</a>)
                 (<a href="https://guscost.github.io/react-portable-grid/app.jsx">demo source</a>)
             </h2>
-            <PortableGrid 
+            <PortableGrid
                 scope={this}
                 data={this.state.data}
                 columns={this.state.columns}
-                detail={function (item) {                
+                detail={function (item) {
                     return <div className="form form-horizontal" style={{ paddingTop: 20 }}>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Email:</label>
                             <div className="col-xs-9">
-                                <input 
-                                    className="form-control" 
-                                    value={item.email} 
+                                <input
+                                    className="form-control"
+                                    value={item.email}
                                     onChange={this._onChangeEmail.bind(this, item)} />
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="col-xs-2 control-label">Zip Code:</label>
                             <div className="col-xs-9">
-                                <input 
-                                    className="form-control" 
-                                    value={item.zipCode} 
+                                <input
+                                    className="form-control"
+                                    value={item.zipCode}
                                     onChange={this._onChangeZipCode.bind(this, item)} />
                             </div>
                         </div>
