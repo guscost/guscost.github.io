@@ -13,11 +13,13 @@ var Slideshow = React.createClass({
   },
 
   componentDidMount: function() {
-    window.addEventListener('keyup', this._onKeyUp);
+    $(document).on("keyup", this._onKeyUp);
+    //window.addEventListener("keyup", this._onKeyUp);
     },
 
     componentWillUnmount: function() {
-    window.removeEventListener('keyup', this._onKeyUp);
+    $(document).off("keyup", this._onKeyUp);
+    //window.removeEventListener("keyup", this._onKeyUp);
     },
   
   _onKeyUp: function (event) {
