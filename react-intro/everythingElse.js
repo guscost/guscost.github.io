@@ -362,7 +362,7 @@ var everythingElse = (function () {
     
     // set loading indicator
     _state.loading = true;
-    render();
+    //render();
     
     // increment planets page
     _state.planetsPage++;
