@@ -96,7 +96,9 @@ var everythingElse = (function () {
         "  },\r\n" +
         "  \r\n" +
         "  render: function () {\r\n" +
-        "    return React.createElement(\"form\", { className: \"form-inline\" },\r\n" +
+        "    return React.createElement(\"form\", {\r\n" + 
+        "      className: \"form-inline\"\r\n" +
+        "    },\r\n" +
         "      \r\n" +
         "      React.createElement(\"input\", {\r\n" +
         "        type: \"text\",\r\n" +
@@ -147,14 +149,16 @@ var everythingElse = (function () {
         "  render: function () {\r\n" +
         "    return <form className=\"form-inline\">\r\n" +
         "      \r\n" +
-        "      <input  type=\"text\"\r\n" +
-        "          className=\"form-control\"\r\n" +
-        "          value={this.state.inputValue}\r\n" +
-        "          onChange={this._onChangeValue} />\r\n" +
+        "      <input\r\n" +
+        "        type=\"text\"\r\n" +
+        "        className=\"form-control\"\r\n" +
+        "        value={this.state.inputValue}\r\n" +
+        "        onChange={this._onChangeValue} />\r\n" +
         "      \r\n" + 
-        "      <div  className=\"btn btn-default\"\r\n" +
-        "          onClick={this._onSubmitValue}>\r\n" +
-        "          \r\n" +
+        "      <div\r\n" +
+        "        className=\"btn btn-default\"\r\n" +
+        "        onClick={this._onSubmitValue}>\r\n" +
+        "        \r\n" +
         "        {this.props.buttonText || \"Submit\"}\r\n" +
         "        \r\n" +
         "      </div>\r\n" +
@@ -200,7 +204,7 @@ var everythingElse = (function () {
         "- Use the production build of React in production",
         "- Perf tools are a good way to identify slow components",
         "- Define `shouldComponentUpdate` to optimize your components",
-        "- `shouldComponentUpdate` should return `false` to skip rendering",
+        "- If `shouldComponentUpdate` returns `false`, component will skip rendering",
         "- If the app is mysteriously not updating you might have messed this up",
         "- Increment a special `version` prop to inspect in `shouldComponentUpdate`",
         "- ImmutableJS provides another easy way to check for changes"
@@ -230,7 +234,7 @@ var everythingElse = (function () {
         "- Stores keep track of the application state and trigger a render on updates",
         "- The traditional implementations are event-based from the Dispatcher on",
         "- [Redux](https://github.com/reactjs/react-redux) is an implementation of Flux-like architecture with a single Store",
-        "- Reducers extract specific data from the singleton Store",
+        "- Reducers extract specific data from the single Store",
         "- If in doubt about which Flux implementation, Redux is a good choice"
       ]
     }, {
@@ -256,7 +260,8 @@ var everythingElse = (function () {
       lines: [
         "- http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/",
         "- https://facebook.github.io/react/docs/thinking-in-react.html",
-        "- https://facebook.github.io/react/docs/tutorial.html"
+        "- https://facebook.github.io/react/docs/tutorial.html",
+        "- http://aeflash.com/2015-02/react-tips-and-best-practices.html"
       ]
     }, {
       code: "thanks",
@@ -295,6 +300,7 @@ var everythingElse = (function () {
     // render slideshow in #slideshow div
     ReactDOM.render(
       React.createElement(Slideshow, { 
+        loading: _state.loading,
         currentSlide: _state.currentSlide,
         slides: _state.slides,
         todos: _state.todos,

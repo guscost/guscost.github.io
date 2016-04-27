@@ -17,7 +17,10 @@ var SlideLines = React.createClass({
   
     // render all visible lines, formatted as markdown
     return el("div", {
-      style: { fontSize: "24px" },
+      style: { 
+        fontSize: "24px",
+        lineHeight: "32px"
+      },
       dangerouslySetInnerHTML: this._rawMarkup()
     });
   }

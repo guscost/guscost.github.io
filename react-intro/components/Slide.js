@@ -15,10 +15,14 @@ var Slide = React.createClass({
     var linesToDisplay = cmp.props.lines.slice(0, cmp.props.displayUpToLine || 0);
     
     return el("div", null,
+    
       el("h1", { className: "page-header" }, cmp.props.title),
+      
       el(SlideLines, {
         lines: linesToDisplay
-      })
+      }),
+      
+      cmp.props.children
     );
   }
 });

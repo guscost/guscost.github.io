@@ -3,10 +3,13 @@ var Slideshow = React.createClass({
   displayName: "Slideshow",
   
   propTypes: {
-    slides: React.PropTypes.array,
-    items: React.PropTypes.array,
-    planets: React.PropTypes.array,
-    itinerary: React.PropTypes.array
+    loading: React.PropTypes.bool.isRequired,
+    currentSlide: React.PropTypes.number.isRequired,
+    slides: React.PropTypes.array.isRequired,
+    todos: React.PropTypes.array.isRequired,
+    planetsPage: React.PropTypes.number.isRequired,
+    planets: React.PropTypes.array.isRequired,
+    itinerary: React.PropTypes.array.isRequired
   },
 
   componentDidMount: function() {
@@ -44,49 +47,26 @@ var Slideshow = React.createClass({
         title: slide.title,
         lines: slide.lines,
         displayUpToLine: slide.displayUpToLine  
-      }),
+      },
+      
+        // todo list example "sub-app"
+        el(TodoApp, {
+          visible: slide.code === "exampleTodoList",
+          todos: cmp.props.todos
+        }),
 
-      // todo list example "sub-app"
-      el(TodoApp, {
-        visible: slide.code === "exampleTodoList",
-        todos: cmp.props.todos
-      }),
-
-      // star wars itinerary example "sub-app"
-      el(ItineraryApp, {
-        visible: slide.code === "exampleItinerary",
-        planetsPage: cmp.props.planetsPage,
-        planets: cmp.props.planets,
-        itinerary: cmp.props.itinerary
-      }),
+        // star wars itinerary example "sub-app"
+        el(ItineraryApp, {
+          visible: slide.code === "exampleItinerary",
+          planetsPage: cmp.props.planetsPage,
+          planets: cmp.props.planets,
+          itinerary: cmp.props.itinerary
+        })
+        
+      ),     
       
       // popup window to indicate "loading" status
-      el("div",  { 
-        className: "modal loadingWindow", 
-        role: "dialog", 
-        id: "loadingPopup", 
-        style: { 
-          display: cmp.props.loading ? null : "none" 
-        }
-      },
-        el("div", { 
-          className: "modal-dialog modal-sm loadingDialog" 
-        },
-          el("div", { 
-            className: "modal-content loadingContent" 
-          },
-            el("div", { 
-              style: { 
-                textAlign: 'center', 
-                padding: '80px 32px' 
-              }, 
-              className: "modal-body loadingBody" 
-            },
-              "LOADING"
-            )
-          )
-        )
-      )
+      el(LoadingPopup, { visible: cmp.props.loading })
       
     );
   }
