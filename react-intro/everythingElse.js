@@ -34,14 +34,14 @@ var everythingElse = (function () {
       title: "What is React and why use it?",
       displayUpToLine: 0,
       lines: [
-        "- React is a UI rendering engine",
+        "- [React](https://facebook.github.io/react/) is a UI rendering engine",
         "- React renders a tree of customizable components",
         "- On the web, \"leaves\" are DOM primitives (`div`, `span`, `h2`)",
         "- Stateless UI is a first-class citizen"
       ]
     }, {
-      code: "exampleUI",
-      title: "Component-based UI",
+      code: "componentUI",
+      title: "UI with components outlined",
       displayUpToLine: 2,
       lines: [
         "![An example UI with components outlined](images/thinking-in-react-components.png)",
@@ -61,8 +61,8 @@ var everythingElse = (function () {
         "- Components can have their own state (but use discretion with this feature)"
        ]
     }, {
-      code: "exampleTree",
-      title: "Stateless Component Tree",
+      code: "statelessComponentTree",
+      title: "Stateless component tree",
       displayUpToLine: 2,
       lines: [
         "![A tree of components](images/data_flow1.svg)",
@@ -70,7 +70,7 @@ var everythingElse = (function () {
       ]
     }, {
       code: "exampleComponent",
-      title: "Example: Component (this one does have internal state)",
+      title: "Example component (this one does have internal state)",
       displayUpToLine: 1,
       lines: [
         "```javascript\r\n" +
@@ -121,7 +121,7 @@ var everythingElse = (function () {
        ]
     }, {
       code: "exampleComponentJSX",
-      title: "Example: Component (JSX version)",
+      title: "Example component (JSX version)",
       displayUpToLine: 1,
       lines: [
         "```javascript\r\n" +
@@ -176,20 +176,24 @@ var everythingElse = (function () {
       lines: [
         "- JSX looks like HTML but is converted to JavaScript before running",
         "- Every \"tag\" is actually a call to `React.createElement()`",
-        "- Nice to work with but requires toolchain support from Node/Babel or TypeScript (via .tsx)",
-        "- To get started: https://facebook.github.io/react/docs/language-tooling.html",
-        "- To just transform some JSX paste it here: https://babeljs.io/repl/"
+        "- It's nice but requires toolchain support: " +
+          "[Babel](https://facebook.github.io/react/docs/language-tooling.html) or " + 
+          "[TypeScript](https://www.typescriptlang.org/docs/handbook/jsx.html) or " + 
+          "[Visual Studio](https://www.microsoft.com/en-us/download/details.aspx?id=48593)",
+        "- To just quickly transform some JSX paste it here: https://babeljs.io/repl/"
        ]
     }, {
-      code: "exampleTodoList",
-      title: "Example: Todo List",
+      code: "demoTodoList",
+      title: "Demo: Todo List",
       lines: []
     }, {
       code: "debugging",
       title: "Debugging React",
       displayUpToLine: 0,
       lines: [
-        "- Use the dev tools! (Chrome works best with large apps)",
+        "- Use the dev tools! " +
+          "([Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) " + 
+          "works best with large apps, or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/))",
         "- Set breakpoints in `render()` or anywhere else",
         "- Set `displayName` on every component",
         "- Set `propTypes` on every component " +
@@ -222,8 +226,8 @@ var everythingElse = (function () {
         "- See my [Kendo wrapper library](http://guscost.github.io/kendo-react-wrappers/) for an example"
       ]
     }, {
-      code: "exampleItinerary",
-      title: "Example: Star Wars Itinerary",
+      code: "demoItinerary",
+      title: "Demo: Star Wars Itinerary",
       lines: []
     }, {
       code: "flux",
@@ -265,6 +269,7 @@ var everythingElse = (function () {
         "- https://facebook.github.io/react/docs/tutorial.html",
         "- https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html",
         "- http://aeflash.com/2015-02/react-tips-and-best-practices.html",
+        "- http://www.jchapron.com/2015/08/14/getting-started-with-redux/ (Node.js tooling and Redux)",
         "- https://reactforbeginners.com/ (paid course but well reviewed)",
         "- http://guscost.github.io/kendo-react-wrappers/",
         "- http://guscost.github.io/react-portable-grid/"

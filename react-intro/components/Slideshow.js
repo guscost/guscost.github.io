@@ -49,15 +49,15 @@ var Slideshow = React.createClass({
         displayUpToLine: slide.displayUpToLine  
       },
       
-        // todo list example "sub-app"
+        // todo list "sub-app"
         el(TodoApp, {
-          visible: slide.code === "exampleTodoList",
+          visible: slide.code === "demoTodoList",
           todos: cmp.props.todos
         }),
 
-        // star wars itinerary example "sub-app"
+        // star wars itinerary "sub-app"
         el(ItineraryApp, {
-          visible: slide.code === "exampleItinerary",
+          visible: slide.code === "demoItinerary",
           planetsPage: cmp.props.planetsPage,
           planets: cmp.props.planets,
           itinerary: cmp.props.itinerary
