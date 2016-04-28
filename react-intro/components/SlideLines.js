@@ -6,10 +6,10 @@ var SlideLines = React.createClass({
     lines: React.PropTypes.array.isRequired
   },
   
-    _rawMarkup: function() {
+  _rawMarkup: function() {
     var rawMarkup = marked(this.props.lines.join("\r\n"), { sanitize: true });
     return { __html: rawMarkup };
-    },
+  },
 
   render: function render() {
     var el = React.createElement;

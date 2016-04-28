@@ -13,24 +13,22 @@ var Slideshow = React.createClass({
   },
 
   componentDidMount: function() {
-    $(document).on("keyup", this._onKeyUp);
-    //window.addEventListener("keyup", this._onKeyUp);
-    },
+    window.addEventListener("keyup", this._onKeyUp);
+  },
 
-    componentWillUnmount: function() {
-    $(document).off("keyup", this._onKeyUp);
-    //window.removeEventListener("keyup", this._onKeyUp);
-    },
+  componentWillUnmount: function() {
+    window.removeEventListener("keyup", this._onKeyUp);
+  },
   
   _onKeyUp: function (event) {
-    switch (event.key) {
-      case "ArrowDown":
+    switch (event.keyCode) {
+      case 40:
         everythingElse.goToNextLine();
         break;
-      case "ArrowLeft":
+      case 37:
         everythingElse.goToPreviousSlide();
         break;
-      case "ArrowRight":
+      case 39:
         everythingElse.goToNextSlide();
         break;
     }

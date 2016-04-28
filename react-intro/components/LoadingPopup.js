@@ -10,6 +10,7 @@ var LoadingPopup = React.createClass({
     var el = React.createElement;
     var cmp = this;
   
+    // just a bootstrap modal that says "loading"
     return el("div",  { 
       className: "modal loadingWindow", 
       role: "dialog", 

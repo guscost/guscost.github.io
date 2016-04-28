@@ -12,21 +12,22 @@ var everythingElse = (function () {
     
     // slides (only "displayUpToLine" changes at runtime but all text is here too)
     slides: [{
+      code: "instructions",
+      title: "Instructions",
+      displayUpToLine: 1,
+      lines: [                  
+        "- Advance list items with down arrow key",
+        "- Navigate between slides with left/right arrow keys",
+        "- Link to this page: http://guscost.github.io/react-intro",
+        "- This page is a React application, try debugging it later"
+      ]
+    }, {
       code: "title",
       title: "Introduction to React",
       displayUpToLine: 2,
       lines: [
         "Gus Cost\r\n",
         "![React logo](images/React.js_logo.svg)"
-      ]
-    }, {
-      code: "instructions",
-      title: "Instructions",
-      displayUpToLine: 1,
-      lines: [                  
-        "- Advance list items with down key",
-        "- Navigate between slides with left/right keys",
-        "- Link to this slideshow: http://guscost.github.io/react-intro"
       ]
     }, {
       code: "whatIsReact",
@@ -69,7 +70,7 @@ var everythingElse = (function () {
       ]
     }, {
       code: "exampleComponent",
-      title: "Example: Component",
+      title: "Example: Component (this one does have internal state)",
       displayUpToLine: 1,
       lines: [
         "```javascript\r\n" +
@@ -120,7 +121,7 @@ var everythingElse = (function () {
        ]
     }, {
       code: "exampleComponentJSX",
-      title: "Example: Component (JSX)",
+      title: "Example: Component (JSX version)",
       displayUpToLine: 1,
       lines: [
         "```javascript\r\n" +
@@ -191,8 +192,8 @@ var everythingElse = (function () {
         "- Use the dev tools! (Chrome works best with large apps)",
         "- Set breakpoints in `render()` or anywhere else",
         "- Set `displayName` on every component",
-        "- Set `propTypes` on every component",
-        "- https://facebook.github.io/react/docs/reusable-components.html#prop-validation",
+        "- Set `propTypes` on every component " +
+          "([documentation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation))",
         "- Use the development build in development",
         "- Watch the console for warnings"
        ]
@@ -202,12 +203,12 @@ var everythingElse = (function () {
       displayUpToLine: 0,
       lines: [
         "- Use the production build of React in production",
-        "- Perf tools are a good way to identify slow components",
-        "- Define `shouldComponentUpdate` to optimize your components",
-        "- If `shouldComponentUpdate` returns `false`, component will skip rendering",
+        "- [Perf tools](http://facebook.github.io/react/docs/perf.html) are a good way to identify slow components",
+        "- [Define `shouldComponentUpdate` to optimize components](https://facebook.github.io/react/docs/advanced-performance.html)",
+        "- If `shouldComponentUpdate` returns `false`, the component will skip rendering",
         "- If the app is mysteriously not updating you might have messed this up",
-        "- Increment a special `version` prop to inspect in `shouldComponentUpdate`",
-        "- ImmutableJS provides another easy way to check for changes"
+        "- On updates you can increment a separate `version` to inspect in `shouldComponentUpdate`",
+        "- Using [ImmutableJS](https://facebook.github.io/immutable-js/) makes it easier to implement `shouldComponentUpdate`"
       ]
     }, {
       code: "integrating",
@@ -217,7 +218,8 @@ var everythingElse = (function () {
         "- Define lifecycle methods like `componentDidMount` and `componentWillUnmount`",
         "- Check out the [component documentation](https://facebook.github.io/react/docs/component-specs.html)",
         "- Pass a `ref` prop to any component",
-        "- `this.refs.{REFNAME}` will be the DOM element where the component is rendered"
+        "- `this.refs.{REFNAME}` will be the DOM element where the component is rendered",
+        "- See my [Kendo wrapper library](http://guscost.github.io/kendo-react-wrappers/) for an example"
       ]
     }, {
       code: "exampleItinerary",
@@ -255,13 +257,17 @@ var everythingElse = (function () {
       ]
     }, {
       code: "links",
-      title: "Further reading",
+      title: "Links",
       displayUpToLine: 0,
       lines: [
         "- http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/",
         "- https://facebook.github.io/react/docs/thinking-in-react.html",
         "- https://facebook.github.io/react/docs/tutorial.html",
-        "- http://aeflash.com/2015-02/react-tips-and-best-practices.html"
+        "- https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html",
+        "- http://aeflash.com/2015-02/react-tips-and-best-practices.html",
+        "- https://reactforbeginners.com/ (paid course but well reviewed)",
+        "- http://guscost.github.io/kendo-react-wrappers/",
+        "- http://guscost.github.io/react-portable-grid/"
       ]
     }, {
       code: "thanks",
@@ -362,7 +368,7 @@ var everythingElse = (function () {
     
     // set loading indicator
     _state.loading = true;
-    //render();
+    render();
     
     // increment planets page
     _state.planetsPage++;
@@ -448,7 +454,7 @@ var everythingElse = (function () {
 // configure marked to highlight javascript code blocks
 marked.setOptions({
   highlight: function (code) {
-  return hljs.highlight("javascript", code).value;
+    return hljs.highlight("javascript", code).value;
   }
 });
 

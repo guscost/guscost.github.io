@@ -7,6 +7,12 @@ var TodoApp = React.createClass({
     todos: React.PropTypes.array.isRequired
   },
   
+  // uncomment this to optimize (only render when it is or was just visible):
+  
+  //shouldComponentUpdate: function (nextProps, nextState) {
+  //  return this.props.visible || nextProps.visible;
+  //},
+  
   _onAddTodo: function (text) {
     everythingElse.addTodo(text);  
   },
@@ -20,11 +26,12 @@ var TodoApp = React.createClass({
   
     return el("div", {
       style: { 
-        display: cmp.props.visible ? null : "none",
+        display: cmp.props.visible ? "block" : "none",
         fontSize: "24px" 
       }
     },
     
+      // use our SimpleForm example component to submit new todos
       el(SimpleForm, {
         buttonText: "Add",
         onSubmitValue: cmp._onAddTodo
@@ -33,15 +40,19 @@ var TodoApp = React.createClass({
       el("div", {
         className: "row"
       },
+      
+        // list of todos
         el("div", {
           className: "col-xs-6"
         },
+        
+          // map the array of data to an array of elements
           _.map(cmp.props.todos, function (todo, index) {
             
-            // aggregate incomplete todos here too to save CPU cycles
+            // aggregate incomplete todos while mapping to save CPU cycles
             if (!todo.done) { totalIncomplete++; }
             
-            // return a "Todo" element for this todo
+            // return a "Todo" element to render for this todo
             return el(Todo, {
               key: todo.id,
               id: todo.id,
@@ -50,12 +61,16 @@ var TodoApp = React.createClass({
             });
             
           })
+          
         ),
+        
+        // total remaining todos
         el("div", {
           className: "col-xs-6"
         },
           el("div", {
             style: { 
+              // make the total count red if more than 10 items are incomplete
               color: totalIncomplete > 10 ? "red" : "black" 
             }
           },

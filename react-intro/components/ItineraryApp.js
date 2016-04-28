@@ -31,7 +31,7 @@ var ItineraryApp = React.createClass({
   
     return el("div", {
       style: { 
-        display: cmp.props.visible ? null : "none",
+        display: cmp.props.visible ? "block" : "none",
         fontSize: "18px" 
       }
     },      
@@ -71,6 +71,7 @@ var ItineraryApp = React.createClass({
             // check if planet is already in the itinerary
             var alreadySelected = _.some(cmp.props.itinerary, { url: planet.url });
             
+            // render a div for the planet summary and "visit" link
             return el("div", {
               key: planet.url,
               style: {
@@ -108,12 +109,13 @@ var ItineraryApp = React.createClass({
           // title
           el("h3", null, "Itinerary:"),
           
-          // list of stops
+          // list of stops with "delete" link
           _.map(cmp.props.itinerary, function (item, index) {
             return el("div", {
               key: item.url,
               style: { marginBottom: "5px" }
             },
+            
               el("span", { 
                 style: { 
                   display: "inline-block",
@@ -123,11 +125,13 @@ var ItineraryApp = React.createClass({
                 item.name
               ),        
               " ",
+              
               el(KW.DatePicker, {
                 value: item.scheduledVisit,
                 onChange: cmp._onChangeScheduledVisit.bind(cmp, item.url)
               }),
               " ",
+              
               el("span", {
                 className: "glyphicon glyphicon-trash",
                 style: { cursor: "pointer" },
