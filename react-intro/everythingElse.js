@@ -53,11 +53,11 @@ var everythingElse = (function () {
       displayUpToLine: 0,
       lines: [
         "- UI state is any visible info that changes independently while using an app",
-         "- Overwrite everything with new HTML on every update?",
-         "- React allows us to *pretend* to overwrite everything",
-         "- It transparently figures out which DOM elements to actually update",
-         "- Much faster than overwriting all HTML or updating every DOM element",
-         "- Components can be stateless (result only depends on *props* passed in)",
+        "- Overwrite everything with new HTML on every update?",
+        "- React allows us to *pretend* to overwrite everything",
+        "- It transparently figures out which DOM elements to actually update",
+        "- Much faster than overwriting all HTML or updating every DOM element",
+        "- Components can be stateless (result only depends on *props* passed in)",
         "- Components can have their own state (but use discretion with this feature)"
        ]
     }, {
