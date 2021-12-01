@@ -21,9 +21,13 @@ var game = (function(){
 	window.msCancelAnimationFrame || 
 	window.clearTimeout;
 
+	var gameStarted = false;
 	var startGame = function() {
-		document.getElementById('audio').play();
-		game.run();
+		if (!gameStarted) {
+			document.getElementById('audio').play();
+			game.run();
+			gameStarted = true;
+		}
 	};
 
 	// Update game logic
@@ -229,6 +233,8 @@ var game = (function(){
 		}
 
 		else if (event.keyCode === data.keys.ENTER) {
+			// only runs the first time, then latches
+			startGame();
 			// show next message
 			if(data.storyboard[data.currentStage].messages.length > data.currentMessage) {
 				game.playSound('tick');
@@ -275,9 +281,6 @@ var game = (function(){
 	// Set screen size
 	canvas.width = data.width;
 	canvas.height = data.height;
-
-	// Start game
-	startGame();
 
 	// Return public variables
 	return g;
