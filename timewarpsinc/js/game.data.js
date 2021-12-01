@@ -69,6 +69,9 @@ var data = (function() {
 			this.objects = [];
 			this.accelerator = { x: 0, y: 999 };
 			this.messages = [{
+				t: "INITIAL STATE",
+				x: 300, y: 340
+			},{
 				t: "TIME WARPS INC",
 				x: 300, y: 340
 			},{
